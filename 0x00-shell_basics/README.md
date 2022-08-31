@@ -1,1 +1,1 @@
-## Shell basic project folder
+## Shell basics project folder
