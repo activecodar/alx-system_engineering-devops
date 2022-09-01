@@ -17,3 +17,5 @@
 |12-directory_permissions| create a dir and set its mode at the same time|
 |13-change_group| changes the group ownership of a provided file|
 |100-change_owner_and_group| change ownership of folders and files setting an owner and group together|
+|101-symbolic_link_permissions| changes the ownership and group ownership of a symbolic link|
+
