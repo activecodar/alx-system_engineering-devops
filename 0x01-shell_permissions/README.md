@@ -12,3 +12,4 @@
 |7-everybody|adds execution permission to the owner, the group owner and the other users, to the file hello|
 |8-James_Bond| Add permissions for otherr users other than group and owner|
 |9-John_Doe| Add all rwx permission to owner rx to group and wx to others|
+|10-mirror_permissions| sets the permission mode of a file using that of another|
