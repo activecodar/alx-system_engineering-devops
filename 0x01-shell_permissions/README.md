@@ -14,5 +14,5 @@
 |9-John_Doe| Add all rwx permission to owner rx to group and wx to others|
 |10-mirror_permissions| sets the permission mode of a file using that of another|
 |11-directories_permissions| sets execute permissions to all subdirectories in the current folder"|
-
+|12-directory_permissions| create a dir and set its mode at the same time"|
 
