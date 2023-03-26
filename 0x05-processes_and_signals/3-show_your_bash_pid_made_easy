@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Get all processes, for all users, including those which might not have a TTY
+for pid in $(pgrep -f bash); do
+  process_name=$(cat /proc/"$pid"/comm)
+  echo "$pid $process_name"
+done

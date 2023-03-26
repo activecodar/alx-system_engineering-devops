@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Displays the content of the current directory
+current_dir=$(pwd)
+
+for file in "$current_dir"/*
+do
+  if [[ "$file" != .* ]]; then
+    name=$(echo "$file" | rev | cut -d '/' -f1 | rev | cut -d '-' -f2-)
+    echo "$name"
+  fi
+done

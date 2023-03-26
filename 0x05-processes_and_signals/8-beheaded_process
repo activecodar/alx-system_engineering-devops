@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# kills infinity and beyond
+pid=$(pgrep -f "7-highlander")
+kill -TERM "$pid"

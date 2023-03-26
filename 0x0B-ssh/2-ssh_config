@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# use the ssh configuration file and reject password auth
+Host 3.86.13.33
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
