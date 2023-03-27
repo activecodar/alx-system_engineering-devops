@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# add 404 page for nginx
+# create file and add text
+touch /usr/share/nginx/html/custom_404.html
+echo "Ceci n'est pas une page" >> /usr/share/nginx/html/custom_404.html
+
+# update file sites-available
+sed -i '/server_name _;/a\
+\terror_page 404 /custom_404.html;\
+\tlocation /custom_404.html {\
+  \t\t root /usr/share/nginx/html;\
+  \t\t internal;\
+\t}' /etc/nginx/sites-available/default
