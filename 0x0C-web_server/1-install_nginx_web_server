@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Install an nginx server
+apt-get update -y && apt-get install nginx -y
+# Allow firewall access
+ufw allow 'Nginx HTTP'
+ufw allow 'Nginx HTTPS'
+ufw allow 'Nginx Full'
