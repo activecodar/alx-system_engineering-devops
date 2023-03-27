@@ -5,3 +5,5 @@ apt-get update -y && apt-get install nginx -y
 ufw allow 'Nginx HTTP'
 ufw allow 'Nginx HTTPS'
 ufw allow 'Nginx Full'
+# add Hello World as index.html
+echo "Hello World" > /var/www/html/index.html
