@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
-# Install an nginx server
-apt-get update -y && apt-get install nginx -y
-# Allow firewall access
-ufw allow 'Nginx HTTP'
-ufw allow 'Nginx HTTPS'
-ufw allow 'Nginx Full'
-# add Hello World as index.html
-echo "Hello World!" > /var/www/html/index.html
+# Installs Nginx server and add index html file
+
+apt-get update && apt-get install -y nginx
+# Configure nginx server
+cat <<EOF >/etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html index.htm;
+    location / {
+        echo "Hello World!";
+    }
+}
+EOF
+
+# Create index.html with "Hello World" message
+echo "Hello World!" >> /var/www/html/index.html
+
+# Restart nginx service
+service nginx restart
