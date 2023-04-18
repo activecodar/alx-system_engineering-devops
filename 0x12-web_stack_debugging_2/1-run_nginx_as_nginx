@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# script to run software as another user
+
+replace_nginx_user() {
+  sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+}
+
+replace_nginx_port() {
+  sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+}
+
+change_nginx_permissions() {
+  chmod 644 /etc/nginx/nginx.conf
+}
+
+stop_apache() {
+  if pgrep apache2; then
+    pkill apache2
+  fi
+}
+
+start_nginx() {
+  sudo -u nginx service nginx start
+}
+
+replace_nginx_user
+replace_nginx_port
+change_nginx_permissions
+stop_apache
+start_nginx
