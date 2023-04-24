@@ -18,7 +18,7 @@ Output:
 The script uses the following third-party libraries:
     - requests: To make HTTP requests to the JSONPlaceholder API.
 """
-import csv
+import json
 import requests
 import sys
 
@@ -66,7 +66,7 @@ def get_all_tasks(employee_id: int) -> tuple:
     return get_user_data(employee_id), get_user_todos(employee_id)
 
 
-def export_to_csv(user_data, todo_list):
+def export_to_json(user_data, todo_list):
     """
     Export all tasks owned by the user to a CSV file.
     Args:
@@ -76,16 +76,17 @@ def export_to_csv(user_data, todo_list):
     try:
         user_id = user_data.get("id")
         username = user_data.get("username")
-        filename = "{}.csv".format(user_id)
-        with open(filename, mode='w', newline='') as csv_file:
-            writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-            [writer.writerow(
-                [user_id, username, t.get("completed"), t.get("title")]
-            ) for t in todo_list]
+        filename = "{}.json".format(user_id)
+        with open(filename, "w") as jsonfile:
+            json.dump({user_id: [{
+                "task": t.get("title"),
+                "completed": t.get("completed"),
+                "username": username
+            } for t in todo_list]}, jsonfile)
     except Exception as e:
         print(e)
 
 
 if __name__ == '__main__':
     user_bio, todos = get_all_tasks(int(sys.argv[1]))
-    export_to_csv(user_data=user_bio, todo_list=todos)
+    export_to_json(user_data=user_bio, todo_list=todos)
