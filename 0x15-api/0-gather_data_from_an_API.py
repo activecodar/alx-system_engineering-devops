@@ -55,26 +55,29 @@ def get_user_todos(user_id: int) -> list:
         return response.json()
 
 
-def get_employee_todo_progress(employee_id: int) -> None:
-    """Print the progress of the employee's TODO list.
+def get_employee_todo_progress(employee_id):
+    """
+    Prints the progress of the employee's TODO list.
 
     Args:
-        employee_id: An integer representing the ID of the employee.
+        employee_id: An integer representing
+        the ID of the employee.
 
     Returns:
         None
     """
+
     user_bio = get_user_data(employee_id)
     todos = get_user_todos(employee_id)
-
-    num_done_tasks = sum(todo.get("completed", None) for todo in todos)
+    num_done_tasks = sum(todo.get("completed", False) for todo in todos)
     num_total_tasks = len(todos)
-    employee_name = user_bio.get("name", None)
-    completed = [t.get("title") for t in todos if t.get("completed") is True]
+    employee_name = user_bio.get("name", "Unknown")
+    completed_tasks = [todo['title'] for todo in todos if todo['completed']]
 
-    print("Employee {} is done with tasks"
-          "({}/{}):".format(employee_name, num_done_tasks, num_total_tasks))
-    [print("\t {}".format(c)) for c in completed]
+    print(f"Employee {employee_name} is done with tasks"
+          f"({num_done_tasks}/{num_total_tasks}):")
+    for task in completed_tasks:
+        print(f"\t {task}")
 
 
 if __name__ == '__main__':
